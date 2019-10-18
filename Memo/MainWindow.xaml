@@ -6,28 +6,81 @@
         xmlns:local="clr-namespace:Memo"
         mc:Ignorable="d"
         Title="Memo" MinHeight="550" MinWidth="450" Background="Coral">
-    <Grid Margin="10">
+
+    <Window.Resources>
+        
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+        </Style>
+        <Style TargetType="{x:Type RadioButton}">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}" x:Key="menu">
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontFamily" Value="Webdings"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush>
+                        <GradientStop Color="Aquamarine" Offset="0"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type Border}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="CornerRadius" Value="4"/>
+        </Style>
+        <Style TargetType="{x:Type Grid}">
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style TargetType="{x:Type ProgressBar}">
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Border Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="3" CornerRadius="4">
+
+        <Border>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <TextBlock Margin="10">Dificultad:</TextBlock>
-                <RadioButton Margin="10" IsChecked="True">Baja</RadioButton>
-                <RadioButton Margin="10">Media</RadioButton>
-                <RadioButton Margin="10">Alta</RadioButton>
-                <Button Margin="10" Width="80" Height="20">Iniciar</Button>
+                <TextBlock Style="{StaticResource menu}" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown">Dificultad:</TextBlock>
+                <RadioButton x:Name="baja" IsChecked="True">Baja</RadioButton>
+                <RadioButton x:Name="media">Media</RadioButton>
+                <RadioButton x:Name="alta">Alta</RadioButton>
+                <Button x:Name="iniciar" Click="Button_Click">Iniciar</Button>
             </StackPanel>
             
         </Border>
+
+        <Border Grid.Row="2">
+            <DockPanel >
+                <Button x:Name="mostrar" DockPanel.Dock="Right">Mostrar</Button>
+                <ProgressBar x:Name="progeso"></ProgressBar>
+            </DockPanel>
+
+        </Border>
         
+        <Grid Grid.Row="1" x:Name="contedor">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+        </Grid>
     </Grid>
 </Window>
