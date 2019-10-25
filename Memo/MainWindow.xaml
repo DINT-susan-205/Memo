@@ -7,80 +7,94 @@
         mc:Ignorable="d"
         Title="Memo" MinHeight="550" MinWidth="450" Background="Coral">
 
-    <Window.Resources>
-        
-        <Style TargetType="{x:Type Button}">
-            <Setter Property="Width" Value="80"/>
-            <Setter Property="Height" Value="20"/>
-            <Setter Property="Margin" Value="10"/>
-            <Setter Property="FontFamily" Value="Comic Sans MS"/>
-        </Style>
-        <Style TargetType="{x:Type RadioButton}">
-            <Setter Property="Margin" Value="10"/>
-            <Setter Property="FontFamily" Value="Comic Sans MS"/>
-        </Style>
-        <Style TargetType="{x:Type TextBlock}" x:Key="menu">
-            <Setter Property="FontFamily" Value="Comic Sans MS"/>
-            <Setter Property="Margin" Value="10"/>
-        </Style>
-        <Style TargetType="{x:Type TextBlock}">
-            <Setter Property="FontFamily" Value="Webdings"/>
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush>
-                        <GradientStop Color="Aquamarine" Offset="0"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style TargetType="{x:Type Border}">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="BorderThickness" Value="3"/>
-            <Setter Property="CornerRadius" Value="4"/>
-        </Style>
-        <Style TargetType="{x:Type Grid}">
-            <Setter Property="Margin" Value="10"/>
-        </Style>
-        <Style TargetType="{x:Type ProgressBar}">
-            <Setter Property="Margin" Value="10"/>
-        </Style>
-    </Window.Resources>
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-        </Grid.RowDefinitions>
+  <Window.Resources>
 
-        <Border>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <TextBlock Style="{StaticResource menu}" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown">Dificultad:</TextBlock>
-                <RadioButton x:Name="baja" IsChecked="True">Baja</RadioButton>
-                <RadioButton x:Name="media">Media</RadioButton>
-                <RadioButton x:Name="alta">Alta</RadioButton>
-                <Button x:Name="iniciar" Click="Button_Click">Iniciar</Button>
-            </StackPanel>
-            
-        </Border>
+    <Style TargetType="{x:Type Button}">
+      <Setter Property="Width" Value="80"/>
+      <Setter Property="Height" Value="20"/>
+      <Setter Property="Margin" Value="10"/>
+      <Setter Property="Background" Value="White"/>
+      <Setter Property="FontFamily" Value="Comic Sans MS"/>
+      <Setter Property="Effect">
+        <Setter.Value>
+          <DropShadowEffect Color="Black" ShadowDepth="0" BlurRadius="10"/>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style TargetType="{x:Type RadioButton}">
+      <Setter Property="Margin" Value="10"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="FontFamily" Value="Comic Sans MS"/>
+    </Style>
+    <Style TargetType="{x:Type TextBlock}" x:Key="menu">
+      <Setter Property="FontFamily" Value="Comic Sans MS"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="Margin" Value="10"/>
+    </Style>
+    <Style TargetType="{x:Type TextBlock}">
+      <Setter Property="FontFamily" Value="Webdings"/>
+    </Style>
+    <Style TargetType="{x:Type Border}">
+      <Setter Property="BorderBrush" Value="Black"/>
+      <Setter Property="BorderThickness" Value="2"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="Background">
+        <Setter.Value>
+          <LinearGradientBrush>
+            <GradientStop Color="White" Offset="0"/>
+            <GradientStop Color="LightBlue" Offset="1"/>
+          </LinearGradientBrush>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style TargetType="{x:Type Border}" x:Key="bordes">
+      <Setter Property="BorderBrush" Value="Black"/>
+      <Setter Property="BorderThickness" Value="4"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="Background" Value="White"></Setter>
+    </Style>
+    <Style TargetType="{x:Type Grid}">
+      <Setter Property="Margin" Value="10"/>
+    </Style>
+    <Style TargetType="{x:Type ProgressBar}">
+      <Setter Property="Margin" Value="10"/>
+      <Setter Property="Foreground" Value="Blue"/>
+    </Style>
+  </Window.Resources>
 
-        <Border Grid.Row="2">
-            <DockPanel >
-                <Button x:Name="mostrar" DockPanel.Dock="Right">Mostrar</Button>
-                <ProgressBar x:Name="progeso"></ProgressBar>
-            </DockPanel>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="50"></RowDefinition>
+      <RowDefinition></RowDefinition>
+      <RowDefinition Height="50"></RowDefinition>
+    </Grid.RowDefinitions>
 
-        </Border>
-        
-        <Grid Grid.Row="1" x:Name="contedor">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            
-        </Grid>
+    <Border Style="{StaticResource bordes}">
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+        <TextBlock Style="{StaticResource menu}">Dificultad:</TextBlock>
+        <RadioButton x:Name="baja" IsChecked="True">Baja</RadioButton>
+        <RadioButton x:Name="media">Media</RadioButton>
+        <RadioButton x:Name="alta">Alta</RadioButton>
+        <Button x:Name="iniciar" Click="Button_Click">Iniciar</Button>
+      </StackPanel>
+
+    </Border>
+
+    <Border Grid.Row="2" Style="{StaticResource bordes}">
+      <DockPanel >
+        <Button x:Name="mostrar" DockPanel.Dock="Right" Click="Button_Click_Mostrar">Mostrar</Button>
+        <ProgressBar x:Name="progeso" Minimum="0" Maximum="100"></ProgressBar>
+      </DockPanel>
+    </Border>
+
+    <Grid Grid.Row="1" x:Name="contedor">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition></ColumnDefinition>
+        <ColumnDefinition></ColumnDefinition>
+        <ColumnDefinition></ColumnDefinition>
+        <ColumnDefinition></ColumnDefinition>
+      </Grid.ColumnDefinitions>
+
     </Grid>
+  </Grid>
 </Window>
